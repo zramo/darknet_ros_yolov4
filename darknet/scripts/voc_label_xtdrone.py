@@ -51,7 +51,7 @@ for year, image_set in sets:
     image_ids = open('../data/xtdrone/VOC%s/ImageSets/Main/%s.txt'%(year, image_set)).read().strip().split()
     list_file = open('../data/xtdrone/%s_%s.txt'%(year, image_set), 'w')
     for image_id in image_ids:
-        list_file.write('/../data/xtdrone/VOC%s/JPEGImages/%s.jpg\n'%(year, image_id))
+        list_file.write('data/xtdrone/VOC%s/JPEGImages/%s.jpg\n'%(year, image_id))
         convert_annotation(year, image_id)
     list_file.close()
 
