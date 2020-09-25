@@ -1,6 +1,6 @@
 # YOLO ROS: Real-Time Object Detection for ROS
 
-## Updated for YOLOv4 by Kun Xiao, thanks for [this CSDN blog](https://blog.csdn.net/JIEJINQUANIL/article/details/106461895)
+## Updated for YOLOv4 by [XTDrone](https://github.com/robin-shaun/XTDrone), thanks for [this CSDN blog](https://blog.csdn.net/JIEJINQUANIL/article/details/106461895)
 
 ![Darknet Ros example: Detection image](human.png)
 
