@@ -1,0 +1,15 @@
+yolo_model:
+
+  config_file:
+    name: yolov4.cfg
+  weight_file:
+    name: yolov4.weights
+  threshold:
+    value: 0.5
+  detection_classes:
+    names:
+      - target 1
+      - target 2 
+      - target 3
+      - target 4
+      - target 5

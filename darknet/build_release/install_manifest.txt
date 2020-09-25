@@ -1,0 +1,9 @@
+/home/robin/yolov4/darknet-master/libdarknet.so
+/home/robin/yolov4/darknet-master/include/darknet/darknet.h
+/home/robin/yolov4/darknet-master/include/darknet/yolo_v2_class.hpp
+/home/robin/yolov4/darknet-master/uselib
+/home/robin/yolov4/darknet-master/darknet
+/home/robin/yolov4/darknet-master/share/darknet/DarknetTargets.cmake
+/home/robin/yolov4/darknet-master/share/darknet/DarknetTargets-release.cmake
+/home/robin/yolov4/darknet-master/share/darknet/DarknetConfig.cmake
+/home/robin/yolov4/darknet-master/share/darknet/DarknetConfigVersion.cmake

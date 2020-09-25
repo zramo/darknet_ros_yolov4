@@ -1,0 +1,14 @@
+yolo_model:
+
+  config_file:
+    name: yolov3-tiny.cfg
+  weight_file:
+    name: yolov3-tiny.weights
+  threshold:
+    value: 0.8
+  detection_classes:
+    names:
+      - human
+      - car
+      - fire hydrant
+      - street sign

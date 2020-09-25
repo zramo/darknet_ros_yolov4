@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/robin/catkin_ws_new/devel/include",
+        "/opt/ros/kinetic/include",
+        "/home/robin/catkin_ws_new/src/darknet_ros/darknet_ros/include",
+        "/home/robin/catkin_ws_new/src/gazebo_ros_actor_plugin/gazebo_ros_actor_cmd_plugin/include",
+        "/usr/include"
+      ],
+      "name": "Linux"
+    }
+  ]
+}

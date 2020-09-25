@@ -1,0 +1,6 @@
+classes= 5
+train  = /home/robin/yolov4/catkin_ws/src/darknet_ros/darknet/data/UAV/2007_train.txt
+valid  = /home/robin/yolov4/catkin_ws/src/darknet_ros/darknet/data/UAV/2007_val.txt
+test  = /home/robin/yolov4/catkin_ws/src/darknet_ros/darknet/data/UAV/2007_test.txt
+names = /home/robin/yolov4/catkin_ws/src/darknet_ros/darknet/cfg/UAV/obj.names
+backup = /home/robin/yolov4/catkin_ws/src/darknet_ros/darknet/backup/
