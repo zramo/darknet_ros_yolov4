@@ -103,6 +103,12 @@ And the pre-trained weight from YOLO v3 can be found here:
     wget http://pjreddie.com/media/files/yolov3-tiny.weights
     wget http://pjreddie.com/media/files/yolov3.weights
 
+And the pre-trained weight from YOLO v4 can be found here:
+
+    wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights
+    wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v4_pre/yolov4-tiny.weights
+
+
 There are more pre-trained weights from different data sets reported [here](https://pjreddie.com/darknet/yolo/).
 
 ### Use your own detection objects
