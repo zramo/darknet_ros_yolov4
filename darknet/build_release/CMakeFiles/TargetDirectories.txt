@@ -1,9 +1,0 @@
-/home/robin/yolov4/darknet-master/build_release/CMakeFiles/install/strip.dir
-/home/robin/yolov4/darknet-master/build_release/CMakeFiles/install/local.dir
-/home/robin/yolov4/darknet-master/build_release/CMakeFiles/install.dir
-/home/robin/yolov4/darknet-master/build_release/CMakeFiles/uselib.dir
-/home/robin/yolov4/darknet-master/build_release/CMakeFiles/edit_cache.dir
-/home/robin/yolov4/darknet-master/build_release/CMakeFiles/rebuild_cache.dir
-/home/robin/yolov4/darknet-master/build_release/CMakeFiles/darknet.dir
-/home/robin/yolov4/darknet-master/build_release/CMakeFiles/dark.dir
-/home/robin/yolov4/darknet-master/build_release/CMakeFiles/list_install_components.dir

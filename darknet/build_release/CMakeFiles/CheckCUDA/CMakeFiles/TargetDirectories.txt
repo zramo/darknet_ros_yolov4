@@ -1,2 +1,0 @@
-/home/robin/yolov4/darknet-master/build_release/CMakeFiles/CheckCUDA/CMakeFiles/rebuild_cache.dir
-/home/robin/yolov4/darknet-master/build_release/CMakeFiles/CheckCUDA/CMakeFiles/edit_cache.dir
