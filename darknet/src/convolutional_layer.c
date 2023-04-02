@@ -9,6 +9,9 @@
 #include <stdio.h>
 #include <time.h>
 
+#define PRINT_CUDNN_ALGO 0
+#define MEMORY_LIMIT 2000000000
+
 #ifdef AI2
 #include "xnor_layer.h"
 #endif
@@ -286,7 +289,75 @@ void cudnn_convolutional_setup(layer *l, int cudnn_preference, size_t workspace_
 
 
 #if CUDNN_MAJOR >= 8
-
+    int returnedAlgoCount;
+    cudnnConvolutionFwdAlgoPerf_t       fw_results[2 * CUDNN_CONVOLUTION_FWD_ALGO_COUNT];
+    cudnnConvolutionBwdDataAlgoPerf_t   bd_results[2 * CUDNN_CONVOLUTION_BWD_DATA_ALGO_COUNT];
+    cudnnConvolutionBwdFilterAlgoPerf_t bf_results[2 * CUDNN_CONVOLUTION_BWD_FILTER_ALGO_COUNT];
+ 
+    cudnnFindConvolutionForwardAlgorithm(cudnn_handle(),
+            l->srcTensorDesc,
+            l->weightDesc,
+            l->convDesc,
+            l->dstTensorDesc,
+            CUDNN_CONVOLUTION_FWD_ALGO_COUNT,
+            &returnedAlgoCount,
+	    fw_results);
+    for(int algoIndex = 0; algoIndex < returnedAlgoCount; ++algoIndex){
+        #if PRINT_CUDNN_ALGO > 0
+        printf("^^^^ %s for Algo %d: %f time requiring %llu memory\n",
+               cudnnGetErrorString(fw_results[algoIndex].status),
+               fw_results[algoIndex].algo, fw_results[algoIndex].time,
+               (unsigned long long)fw_results[algoIndex].memory);
+        #endif
+        if( fw_results[algoIndex].memory < MEMORY_LIMIT ){
+            l->fw_algo = fw_results[algoIndex].algo;
+            break;
+	}
+    }
+ 
+    cudnnFindConvolutionBackwardDataAlgorithm(cudnn_handle(),
+            l->weightDesc,
+            l->ddstTensorDesc,
+            l->convDesc,
+            l->dsrcTensorDesc,
+            CUDNN_CONVOLUTION_BWD_DATA_ALGO_COUNT,
+            &returnedAlgoCount,
+            bd_results);
+    for(int algoIndex = 0; algoIndex < returnedAlgoCount; ++algoIndex){
+        #if PRINT_CUDNN_ALGO > 0
+        printf("^^^^ %s for Algo %d: %f time requiring %llu memory\n",
+               cudnnGetErrorString(bd_results[algoIndex].status),
+               bd_results[algoIndex].algo, bd_results[algoIndex].time,
+               (unsigned long long)bd_results[algoIndex].memory);
+        #endif
+        if( bd_results[algoIndex].memory < MEMORY_LIMIT ){
+            l->bd_algo = bd_results[algoIndex].algo;
+            break;
+        }
+    }
+ 
+    cudnnFindConvolutionBackwardFilterAlgorithm(cudnn_handle(),
+            l->srcTensorDesc,
+            l->ddstTensorDesc,
+            l->convDesc,
+            l->dweightDesc,
+            CUDNN_CONVOLUTION_BWD_FILTER_ALGO_COUNT,
+            &returnedAlgoCount,
+            bf_results);
+    for(int algoIndex = 0; algoIndex < returnedAlgoCount; ++algoIndex){
+        #if PRINT_CUDNN_ALGO > 0
+        printf("^^^^ %s for Algo %d: %f time requiring %llu memory\n",
+               cudnnGetErrorString(bf_results[algoIndex].status),
+               bf_results[algoIndex].algo, bf_results[algoIndex].time,
+               (unsigned long long)bf_results[algoIndex].memory);
+        #endif
+        if( bf_results[algoIndex].memory < MEMORY_LIMIT ){
+            l->bf_algo = bf_results[algoIndex].algo;
+            break;
+        }
+    }
+ 
+/*
     if (cudnn_preference == cudnn_smallest)
     {
         workspace_size_specify = 0;
@@ -409,9 +480,33 @@ void cudnn_convolutional_setup(layer *l, int cudnn_preference, size_t workspace_
         exit(0);
     }
     //printf(" cuDNN BWD-filter algo: %d \n", l->bf_algo);
-
+*/
 #else   // CUDNN_MAJOR >= 8
-
+     cudnnGetConvolutionForwardAlgorithm(cudnn_handle(),
+             l->srcTensorDesc,
+             l->weightDesc,
+             l->convDesc,
+             l->dstTensorDesc,
+             CUDNN_CONVOLUTION_FWD_SPECIFY_WORKSPACE_LIMIT,
+             2000000000,
+             &l->fw_algo);
+     cudnnGetConvolutionBackwardDataAlgorithm(cudnn_handle(),
+             l->weightDesc,
+             l->ddstTensorDesc,
+             l->convDesc,
+             l->dsrcTensorDesc,
+             CUDNN_CONVOLUTION_BWD_DATA_SPECIFY_WORKSPACE_LIMIT,
+             2000000000,
+             &l->bd_algo);
+     cudnnGetConvolutionBackwardFilterAlgorithm(cudnn_handle(),
+             l->srcTensorDesc,
+             l->ddstTensorDesc,
+             l->convDesc,
+             l->dweightDesc,
+             CUDNN_CONVOLUTION_BWD_FILTER_SPECIFY_WORKSPACE_LIMIT,
+             2000000000,
+             &l->bf_algo);
+/*
     int forward_algo = CUDNN_CONVOLUTION_FWD_PREFER_FASTEST;
     int backward_algo = CUDNN_CONVOLUTION_BWD_DATA_PREFER_FASTEST;
     int backward_filter = CUDNN_CONVOLUTION_BWD_FILTER_PREFER_FASTEST;
@@ -456,6 +551,7 @@ void cudnn_convolutional_setup(layer *l, int cudnn_preference, size_t workspace_
         (cudnnConvolutionBwdFilterPreference_t)backward_filter,
         workspace_size_specify,
         &l->bf_algo));
+*/
 #endif  // CUDNN_MAJOR >= 8
 
 

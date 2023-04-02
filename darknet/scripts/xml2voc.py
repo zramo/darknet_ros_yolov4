@@ -3,7 +3,7 @@ import random
 
 trainval_percent = 1  # trainval数据集占所有数据的比例
 train_percent = 0.7  # train数据集占trainval数据的比例
-xmlfilepath = '../data/xtdrone/VOC2007/Annotations/'
+xmlfilepath = '/home/icey/icyolo/labels_txt/'
 txtsavepath = '../data/xtdrone/VOC2007/ImageSets/Main/'
 total_xml = os.listdir(xmlfilepath)
 
