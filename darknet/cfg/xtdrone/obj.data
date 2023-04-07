@@ -2,6 +2,6 @@ classes= 5
 train  = /home/icey/catkin_ws/src/zramo_multi_vehicle_exploration/darknet_ros_yolov4/darknet/data/xtdrone/VOC2007/ImageSets/Main/train.txt
 valid  = /home/icey/catkin_ws/src/zramo_multi_vehicle_exploration/darknet_ros_yolov4/darknet/data/xtdrone/VOC2007/ImageSets/Main/val.txt
 test  = /home/icey/catkin_ws/src/zramo_multi_vehicle_exploration/darknet_ros_yolov4/darknet/data/xtdrone/VOC2007/ImageSets/Main/test.txt
-names = /home/icey/catkin_ws/src/zramo_multi_vehicle_exploration/darknet_ros_yolov4/darknet/cfg/UAV/obj.names
+names = /home/icey/catkin_ws/src/zramo_multi_vehicle_exploration/darknet_ros_yolov4/darknet/cfg/xtdrone/obj.names
 backup = /home/icey/catkin_ws/src/zramo_multi_vehicle_exploration/darknet_ros_yolov4/darknet/backup/
 
