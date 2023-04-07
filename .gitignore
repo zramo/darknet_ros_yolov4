@@ -1,3 +1,4 @@
 .vscode
 darknet/data/xtdrone/*
 darknet/backup
+*.weights
