@@ -1,0 +1,15 @@
+yolo_model:
+
+  config_file:
+    name: icy_yolov4.cfg
+  weight_file:
+    name: icy_tur.weights
+  threshold:
+    value: 0.5
+  detection_classes:
+    names:
+      - QingZhou
+      - AirCraft
+      - Car 
+      - FireTruck
+      - Person
