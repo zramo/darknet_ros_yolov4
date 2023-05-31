@@ -3,3 +3,4 @@ darknet/data/xtdrone/*
 darknet/backup
 *.weights
 *.o
+
