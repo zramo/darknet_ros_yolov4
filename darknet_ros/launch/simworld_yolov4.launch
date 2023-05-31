@@ -5,8 +5,7 @@
 
   <!-- Use YOLOv4 -->
   <arg name="network_param_file"         default="$(find darknet_ros)/config/yolov4_ictu.yaml"/>
-  <arg name="image" default="/qz1/camera_link/image_raw" />
-  <!--arg name="image" default="/usb_cam/image_raw" /-->
+  <arg name="image" default="/$(arg ns)/camera_link/image_raw" />
 
 
   <!-- Include main launch file -->
